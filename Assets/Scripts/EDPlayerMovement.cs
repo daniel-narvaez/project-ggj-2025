@@ -19,6 +19,13 @@ public class EDPlayerMovement : MonoBehaviour
 
     private void Update()
     {
+      if (GameStateManager.Instance.currentState != GameState.Play)
+      {
+        rb.isKinematic = true;
+        return;
+      }
+
+        rb.isKinematic = false;
         MoveHorizontally();
         MoveVertically();
     }
