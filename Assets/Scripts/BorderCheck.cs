@@ -3,14 +3,20 @@ using UnityEngine;
 public class BorderCheck : MonoBehaviour
 {
     private Camera mainCamera;
-    private Rigidbody rb;
+    private Rigidbody playerRigidbody;
 
     void Start()
     {
         // Get the main camera
         mainCamera = Camera.main;
-        // Get Rigidbody
-        rb = GetComponent<Rigidbody>();
+
+        // Get the Rigidbody component (assuming the player has one)
+        playerRigidbody = GetComponent<Rigidbody>();
+
+        if (playerRigidbody == null)
+        {
+            Debug.LogError("Rigidbody not found on the player object. Please add one.");
+        }
     }
 
     void Update()
@@ -18,55 +24,48 @@ public class BorderCheck : MonoBehaviour
         // Convert player's position to viewport space
         Vector3 viewportPosition = mainCamera.WorldToViewportPoint(transform.position);
 
-        // Check if the player is out of bounds
+        // Check and handle boundaries
         if (viewportPosition.y <= 0) // Bottom of the screen
         {
-            Debug.Log("Player has hit the bottom of the screen!");
-            HandleBoundaryHit("Bottom");
+            StopPlayer("Bottom");
         }
         else if (viewportPosition.y >= 1) // Top of the screen
         {
-            Debug.Log("Player has hit the top of the screen!");
-            HandleBoundaryHit("Top");
+            StopPlayer("Top");
         }
 
         if (viewportPosition.x <= 0) // Left side of the screen
         {
-            Debug.Log("Player has hit the left side of the screen!");
-            HandleBoundaryHit("Left");
+            StopPlayer("Left");
         }
         else if (viewportPosition.x >= 1) // Right side of the screen
         {
-            Debug.Log("Player has hit the right side of the screen!");
-            HandleBoundaryHit("Right");
+            StopPlayer("Right");
         }
     }
 
-    void HandleBoundaryHit(string boundary)
+    void StopPlayer(string boundary)
     {
-        Vector3 clampedPosition = transform.position;
+        Debug.Log($"Player has hit the {boundary} boundary!");
 
-        // Adjust position to stay within the boundary
-        if (boundary == "Bottom")
-            Debug.Log("restart level");
-        else if (boundary == "Top")
+        // Stop the player's movement
+        if (playerRigidbody != null)
         {
-            //clampedPosition.y = mainCamera.ViewportToWorldPoint(new Vector3(0.5f, 1f, transform.position.z)).y;
-            rb.velocity = Vector3.zero;
-        }
-        else if (boundary == "Left")
-        {
-            //clampedPosition.x = mainCamera.ViewportToWorldPoint(new Vector3(0f, 0.5f, transform.position.z)).x;
-            rb.velocity = Vector3.zero;
-        }
-        else if (boundary == "Right")
-        {
-            //clampedPosition.x = mainCamera.ViewportToWorldPoint(new Vector3(1f, 0.5f, transform.position.z)).x;
-            rb.velocity = Vector3.zero;
-        }
+            Vector3 clampedPosition = transform.position;
 
-        // Update the player's position and stop velocity
-        //transform.position = clampedPosition;
-        //rb.velocity = Vector3.zero;
+            // Adjust position to stay within the boundary
+            if (boundary == "Bottom")
+                Debug.Log("restart level");
+            else if (boundary == "Top")
+                clampedPosition.y = mainCamera.ViewportToWorldPoint(new Vector3(0.5f, 1f, transform.position.z)).y;
+            else if (boundary == "Left")
+                clampedPosition.x = mainCamera.ViewportToWorldPoint(new Vector3(0f, 0.5f, transform.position.z)).x;
+            else if (boundary == "Right")
+                clampedPosition.x = mainCamera.ViewportToWorldPoint(new Vector3(1f, 0.5f, transform.position.z)).x;
+
+            // Update the player's position and stop velocity
+            transform.position = clampedPosition;
+            playerRigidbody.velocity = Vector3.zero;
+        }
     }
 }
