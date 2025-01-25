@@ -72,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
         // Apply a continuous upward force to the player when Space is held
         rb.velocity = new Vector2(rb.velocity.x, upwardForce); // Only modify the Y axis (upward movement)
     }
+
     bool IsObjectAtBottom()
     {
         // Get the camera's orthographic size (half the height of the screen in world units)

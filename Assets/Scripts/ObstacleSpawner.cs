@@ -4,7 +4,6 @@ public class ObstacleSpawner : MonoBehaviour
 {
     public GameObject[] obstaclePrefabs; // List of obstacle prefabs
     public float spawnInterval = 2f;    // Time between obstacle spawns
-    public float fallSpeed = 5f;        // Speed at which obstacles fall
 
     private float screenWidth;
     private float screenHeight;
@@ -31,7 +30,7 @@ public class ObstacleSpawner : MonoBehaviour
         float randomX = Random.Range(-screenWidth / 2f, screenWidth / 2f);
 
         // Set spawn position at the top of the screen
-        Vector3 spawnPosition = new Vector3(randomX, (screenHeight / 2f + 5f), 0f);
+        Vector3 spawnPosition = new Vector3(randomX, (screenHeight / 2f + 10f), 0f);
 
         // Randomly select an obstacle prefab from the list
         GameObject selectedObstacle = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
