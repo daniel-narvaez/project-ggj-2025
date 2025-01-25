@@ -2,32 +2,98 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;  // Speed of horizontal movement
-    public float jumpForce = 5f;  // Force applied when jumping upwards
+    public float maxSpeed;      // Maximum speed for horizontal movement
+    public float baseAcceleration; // Rate of acceleration
+    public float baseDeceleration; // Rate of deceleration
+    public float upwardForce;   // Force applied when moving upwards
 
     private Rigidbody2D rb;
+    private float currentSpeed = 0f; // Current horizontal speed
+
+    private SpriteScaler spriteScaler;
 
     void Start()
     {
+        // Get the Rigidbody2D component attached to the player
         rb = GetComponent<Rigidbody2D>();
+
+        // Get the SpriteScaler component
+        spriteScaler = GetComponentInChildren<SpriteScaler>();
+        
     }
 
     void Update()
     {
-        // Horizontal movement (left/right)
-        float moveInput = Input.GetAxis("Horizontal");  // A/D or Left/Right Arrow keys
-        rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);  // Only change the X axis
+        // Get the current sprite scale
+        float spriteScale = transform.localScale.x; // Assuming uniform scale
 
-        // Upward movement triggered by pressing Space
-        if (Input.GetKeyDown(KeyCode.Space))
+        // Adjust acceleration and deceleration based on sprite scale
+        float adjustedAcceleration = baseAcceleration * spriteScale * (spriteScaler.currentScale * 100);
+        float adjustedDeceleration = baseDeceleration * spriteScale * (spriteScaler.currentScale * 100);
+        Debug.Log("accel " + adjustedAcceleration);
+        Debug.Log("decel " + adjustedDeceleration);
+
+        // Horizontal movement input (left/right)
+        float moveInput = Input.GetAxis("Horizontal");  // A/D or Left/Right Arrow keys
+
+        if (moveInput != 0)
         {
-            Jump();  // Call the jump function to move upwards
+            // Accelerate towards maxSpeed in the direction of input
+            currentSpeed += moveInput * baseAcceleration * Time.deltaTime;
+            currentSpeed = Mathf.Clamp(currentSpeed, -maxSpeed, maxSpeed); // Clamp to max speed
+        }
+        else
+        {
+            // Decelerate when no input
+            if (currentSpeed > 0)
+            {
+                currentSpeed -= baseDeceleration * Time.deltaTime;
+                currentSpeed = Mathf.Max(currentSpeed, 0);
+            }
+            else if (currentSpeed < 0)
+            {
+                currentSpeed += baseDeceleration * Time.deltaTime;
+                currentSpeed = Mathf.Min(currentSpeed, 0);
+            }
+        }
+
+        // Apply horizontal velocity
+        rb.velocity = new Vector2(currentSpeed, rb.velocity.y);
+
+        // Upward movement when Space key is held down
+        if (Input.GetKey(KeyCode.Space))
+        {
+            MoveUp(); // Call the function to move the player upward
         }
     }
 
-    void Jump()
+    void MoveUp()
     {
-        // Apply upward force to the player
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        // Apply a continuous upward force to the player when Space is held
+        rb.velocity = new Vector2(rb.velocity.x, upwardForce); // Only modify the Y axis (upward movement)
     }
+    bool IsObjectAtBottom()
+    {
+        // Get the camera's orthographic size (half the height of the screen in world units)
+        float cameraHeight = Camera.main.orthographicSize;
+
+        // Get the Y position of the object
+        float objectYPosition = transform.position.y;
+
+        // Check if the object's Y position is less than the bottom of the camera view
+        return objectYPosition <= -cameraHeight;
+    }
+
+    bool IsObjectAtTop()
+    {
+        // Get the camera's orthographic size (half the height of the screen in world units)
+        float cameraHeight = Camera.main.orthographicSize;
+
+        // Get the Y position of the object
+        float objectYPosition = transform.position.y;
+
+        // Check if the object's Y position is greater than the top of the camera view
+        return objectYPosition >= cameraHeight;
+    }
+
 }
