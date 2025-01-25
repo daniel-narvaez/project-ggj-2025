@@ -15,9 +15,7 @@ public class Flash : MonoBehaviour
   [SerializeField]
   [Range(0.5f, 2.0f)] private float flashSpeed = 1f;
 
-
   private TextMeshProUGUI textMesh;
-
 
   private void Start()
   {

@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class PlayerScore : Singleton<PlayerScore>
 {
+  private float score = 0;
+  public float Score => score;
 
-  
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+  private float distanceTravelled = 0;
+  public float DistanceTravelled => distanceTravelled;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  private void LateUpdate() {
+    if (GameStateManager.Instance.currentState != GameState.Play)
+      return;
+
+  }
 }
