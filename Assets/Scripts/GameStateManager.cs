@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,11 +7,14 @@ public enum GameState
 {
   Start,
   Play,
-  Pause
+  Pause,
+  GameOver
 }
 
 public class GameStateManager : Singleton<GameStateManager>
 {
+
+    [Header("Game State Settings")]
 
     public GameState currentState = GameState.Start; // Default state is Start
 
@@ -18,6 +22,10 @@ public class GameStateManager : Singleton<GameStateManager>
     public GameObject startUI;
     public GameObject playUI;
     public GameObject pauseUI;
+    public GameObject gameOverUI;
+
+    private float holdTime = 0;
+    public float startTimeThreshold;
 
     void Start()
     {
@@ -47,9 +55,14 @@ public class GameStateManager : Singleton<GameStateManager>
         else if (currentState == GameState.Start)
         {
             // Start the game when pressing Enter
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKey(KeyCode.Space))
             {
+              holdTime += Time.deltaTime;
+
+              if (holdTime >= startTimeThreshold)
                 SetGameState(GameState.Play);
+            } else {
+              holdTime = 0;
             }
         }
     }
@@ -65,9 +78,9 @@ public class GameStateManager : Singleton<GameStateManager>
     void UpdateUI()
     {
         // Hide all UI panels
-        startUI.SetActive(false);
-        playUI.SetActive(false);
-        pauseUI.SetActive(false);
+        startUI?.SetActive(false);
+        playUI?.SetActive(false);
+        pauseUI?.SetActive(false);
 
         // Show the UI for the current game state
         switch (currentState)
@@ -80,6 +93,9 @@ public class GameStateManager : Singleton<GameStateManager>
                 break;
             case GameState.Pause:
                 pauseUI.SetActive(true);
+                break;
+            case GameState.GameOver:
+                gameOverUI.SetActive(true);
                 break;
         }
     }
