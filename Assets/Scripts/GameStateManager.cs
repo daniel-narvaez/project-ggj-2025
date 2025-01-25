@@ -1,15 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameStateManager : MonoBehaviour
+// Enum to represent the three game states
+public enum GameState
 {
-    // Enum to represent the three game states
-    public enum GameState
-    {
-        Start,
-        Play,
-        Pause
-    }
+  Start,
+  Play,
+  Pause
+}
+
+public class GameStateManager : Singleton<GameStateManager>
+{
 
     public GameState currentState = GameState.Start; // Default state is Start
 
