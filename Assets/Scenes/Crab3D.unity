@@ -910,15 +910,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc6148d15604a4f3e81871699b6fdd0c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -5.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc6148d15604a4f3e81871699b6fdd0c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.25
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc6148d15604a4f3e81871699b6fdd0c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: dc6148d15604a4f3e81871699b6fdd0c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1604,7 +1604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b06fe346a73242e44b291c71d0516e34, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1675,15 +1675,20 @@ MonoBehaviour:
   - {fileID: 8924392563033146115, guid: af6f9d7925c76cb449195ef5e077f897, type: 3}
   - {fileID: 4796964028700877295, guid: 5780e020abdc4494b881a469ebdc7582, type: 3}
   - {fileID: 4673048190145955758, guid: c51d5de4972f5ed4da027e31aa8d219f, type: 3}
+  - {fileID: 4574744831209122471, guid: b55a0c8527daf0445b6e0292e26a05b9, type: 3}
   - {fileID: 7228244590862914394, guid: 18dbf8a5d42c8fb4f983cced2bb38358, type: 3}
   - {fileID: 3583105995974193760, guid: 29297759746178141bd05d8434c5783f, type: 3}
   - {fileID: 1473513740480396825, guid: 8fa4d85528602c44cafa064bb6c58d5c, type: 3}
   - {fileID: 8352723159926592450, guid: 45bdd581a83e4724899e3d234206e69f, type: 3}
   - {fileID: 364348983690011783, guid: fbcd1b980aba1504a900428d3b3360c5, type: 3}
   - {fileID: 1345684956361505511, guid: b801ebd5f35f7a64388f8ae968d16d88, type: 3}
+  - {fileID: 583292880328645475, guid: a44c7c815c754eb429e9afa852139d4d, type: 3}
+  - {fileID: 8541044119475813283, guid: f72619cea9ca3164ab2df83fac737e2f, type: 3}
+  - {fileID: 7705062289287558057, guid: a89a9cac803f3f54781bb1b27fc158a0, type: 3}
   - {fileID: 548101119187709244, guid: dc93a42356dcd954c856393360514bec, type: 3}
   - {fileID: 3079597143327428844, guid: 6fb9eae765c3991459a72562e027f707, type: 3}
   - {fileID: 2697024747614021990, guid: 17828fa620baba6479d97d7f6473d45b, type: 3}
+  - {fileID: 7533801122105559632, guid: 94a5d90dad074af40beba87cdc7c83ab, type: 3}
   - {fileID: 7632787523921827867, guid: a2349d77232588c448feabc1b81777cd, type: 3}
   spawnInterval: 2
   maxRotationAngle: 360
@@ -1883,6 +1888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f60830c601afb443ac06c51f4bc2f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  immortal: 1
   currentState: 0
   startUI: {fileID: 0}
   playUI: {fileID: 0}
@@ -1999,7 +2005,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!23 &230244282999415834
 MeshRenderer:
   m_ObjectHideFlags: 0
