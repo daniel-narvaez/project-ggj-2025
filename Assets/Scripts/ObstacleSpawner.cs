@@ -3,7 +3,8 @@ using UnityEngine;
 public class ObstacleSpawner : MonoBehaviour
 {
     public GameObject[] obstaclePrefabs; // List of obstacle prefabs
-    public float spawnInterval = 2f;    // Time between obstacle spawns
+    public float spawnInterval = 2f;     // Time between obstacle spawns
+    public float maxRotationAngle = 360f; // Maximum rotation angle for obstacles
 
     private float screenWidth;
     private float screenHeight;
@@ -30,12 +31,17 @@ public class ObstacleSpawner : MonoBehaviour
         float randomX = Random.Range(-screenWidth / 2f, screenWidth / 2f);
 
         // Set spawn position at the top of the screen
-        Vector3 spawnPosition = new Vector3(randomX, (screenHeight / 2f + 10f), 0f);
+        Vector3 spawnPosition = new Vector3(randomX, (screenHeight / 2f + 20f), 0f);
 
         // Randomly select an obstacle prefab from the list
         GameObject selectedObstacle = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
 
-        // Instantiate the selected obstacle
-        GameObject obstacle = Instantiate(selectedObstacle, spawnPosition, Quaternion.identity);
+        // Randomize rotation for all axes (X, Y, Z)
+        float randomRotationX = Random.Range(0f, maxRotationAngle);
+        float randomRotationY = Random.Range(0f, maxRotationAngle);
+        float randomRotationZ = Random.Range(0f, maxRotationAngle);
+
+        // Instantiate the selected obstacle with a random rotation
+        GameObject obstacle = Instantiate(selectedObstacle, spawnPosition, Quaternion.Euler(randomRotationX, randomRotationY, randomRotationZ));
     }
 }
