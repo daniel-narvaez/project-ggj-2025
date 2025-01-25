@@ -21,6 +21,10 @@ public class ObstacleSpawner : MonoBehaviour
 
     void SpawnObstacle()
     {
+      if (GameStateManager.Instance.currentState != GameState.Play)
+        return;
+
+      
         if (obstaclePrefabs.Length == 0)
         {
             Debug.LogWarning("No obstacle prefabs assigned to the spawner.");

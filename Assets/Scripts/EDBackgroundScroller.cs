@@ -19,6 +19,9 @@ public class EDBackgroundScroller : MonoBehaviour
 
     void Update()
     {
+        if(GameStateManager.Instance.currentState != GameState.Play)
+          return;
+        
         // Move the background along the Y-axis (or Z-axis, based on your scene)
         transform.Translate(Vector3.down * scrollSpeed * Time.deltaTime);
 
