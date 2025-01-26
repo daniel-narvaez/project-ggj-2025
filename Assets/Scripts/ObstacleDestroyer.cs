@@ -27,7 +27,7 @@ public class ObstacleDestroyer : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            ITriggerHandler handler = GetComponent<ITriggerHandler>();
+            ITriggerHandler handler = other.transform.parent.GetComponent<ITriggerHandler>();
             if (handler != null)
             {
                 handler.OnPlayerTrigger();

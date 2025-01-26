@@ -6,7 +6,7 @@ public interface ITriggerHandler
   void OnPlayerTrigger();
 }
 
-public class EDPlayerMovement : MonoBehaviour, ITriggerHandler
+public class Player : Singleton<Player>, ITriggerHandler
 {
     public SoundManager SoundManager;
     public float maxHorizontalSpeed = 5f; // Speed for horizontal movement
@@ -14,7 +14,8 @@ public class EDPlayerMovement : MonoBehaviour, ITriggerHandler
 
     public float acceleration = 10f;
     private Rigidbody rb; // The Rigidbody component of the 3D model
-    private GameObject bubble, crab;
+    public GameObject bubble;
+    public Rigidbody crabBody;
     private Scale scale;
 
     private void Start()
@@ -83,6 +84,9 @@ public class EDPlayerMovement : MonoBehaviour, ITriggerHandler
     }
 
     public void OnPlayerTrigger() {
+      bubble.SetActive(false);
+      crabBody.isKinematic = false;
 
+      GameStateManager.Instance.SetGameState(GameState.GameOver);
     }
 }
