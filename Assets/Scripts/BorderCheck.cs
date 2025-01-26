@@ -47,7 +47,7 @@ public class BorderCheck : MonoBehaviour
     void StopPlayer(string boundary)
     {
         Debug.Log($"Player has hit the {boundary} boundary!");
-
+        Player.Instance.OnPlayerTrigger();
         // Stop the player's movement
         if (playerRigidbody != null)
         {
