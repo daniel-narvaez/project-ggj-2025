@@ -95,6 +95,6 @@ public class Player : Singleton<Player>, ITriggerHandler
       scale.currentScale = 0.3f;
       crabBody.isKinematic = true;
       crabBody.transform.localPosition = Vector3.zero;
-      this.transform.position = Vector3.zero;
+      this.transform.position = new Vector3(0, -1.5f, 0);
     }
 }
