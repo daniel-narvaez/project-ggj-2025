@@ -10,6 +10,14 @@ public class SoundManager : MonoBehaviour
     [Tooltip("AudioSource to play the sounds.")]
     public AudioSource audioSource;
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) // Replace KeyCode.Space with any key you want
+        {
+            //PlayRandomDestroySound();
+        }
+    }
+
     public void PlayRandomDestroySound()
     {
         if (destroySounds.Length == 0 || audioSource == null)
