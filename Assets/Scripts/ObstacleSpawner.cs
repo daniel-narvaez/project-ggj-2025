@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ObstacleSpawner : MonoBehaviour
 {
+    public SoundManager soundManager;
     public GameObject[] obstaclePrefabs; // List of obstacle prefabs
     public float spawnInterval = 2f;     // Time between obstacle spawns
     public float maxRotationAngle = 360f; // Maximum rotation angle for obstacles
@@ -17,6 +18,8 @@ public class ObstacleSpawner : MonoBehaviour
 
         // Start spawning obstacles
         InvokeRepeating(nameof(SpawnObstacle), 0f, spawnInterval);
+
+        soundManager = FindObjectOfType<SoundManager>();
     }
 
     void SpawnObstacle()
@@ -46,6 +49,7 @@ public class ObstacleSpawner : MonoBehaviour
         float randomRotationZ = Random.Range(0f, maxRotationAngle);
 
         // Instantiate the selected obstacle with a random rotation
+        soundManager.PlayRandomObjectMissSound();
         GameObject obstacle = Instantiate(selectedObstacle, spawnPosition, Quaternion.Euler(randomRotationX, randomRotationY, randomRotationZ));
     }
 }

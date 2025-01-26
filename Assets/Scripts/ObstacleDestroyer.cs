@@ -16,11 +16,6 @@ public class ObstacleDestroyer : MonoBehaviour
     void Update()
     {
         // Destroy the object if it goes below the bottom of the screen
-        if (transform.position.y < 0)
-        {
-            soundManager.PlayRandomObjectMissSound();
-        }
-
         if (transform.position.y < -screenHeight / 2f)
         {
             soundManager.PlayRandomDestroySound();
