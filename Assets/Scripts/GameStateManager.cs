@@ -69,6 +69,7 @@ public class GameStateManager : Singleton<GameStateManager>
 
     public void RestartGame() {
       // Reset background, score, and crab position.
+      
     }
 
     // Method to set the current game state and handle state transitions

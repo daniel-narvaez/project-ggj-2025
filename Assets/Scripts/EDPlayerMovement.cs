@@ -3,7 +3,7 @@ using UnityEngine;
 public class EDPlayerMovement : MonoBehaviour
 {
     public float maxHorizontalSpeed = 5f; // Speed for horizontal movement
-    public float maxVerticalSpeed = 2f; // Speed for vertical movement (up/down)
+    public float maxVerticalSpeed = 1f; // Speed for vertical movement (up/down)
 
     public float acceleration = 10f;
     private Rigidbody rb; // The Rigidbody component of the 3D model
@@ -57,11 +57,11 @@ public class EDPlayerMovement : MonoBehaviour
     {
         //Vector3 force = Vector3.up * acceleration / 12;
         // kyle speed fix
-        Vector3 force = Vector3.up * acceleration;
+        Vector3 force = Vector3.up * acceleration / 2;
         
         if (Input.GetKey(KeyCode.Space) && scale.currentScale < scale.maxScale)
         {
-            rb.AddForce(force);
+          rb.AddForce(force);
         }
         
         // Clamp vertical velocity
