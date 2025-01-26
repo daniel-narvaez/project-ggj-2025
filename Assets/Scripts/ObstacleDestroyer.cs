@@ -16,6 +16,11 @@ public class ObstacleDestroyer : MonoBehaviour
     void Update()
     {
         // Destroy the object if it goes below the bottom of the screen
+        if (transform.position.y < 0)
+        {
+            soundManager.PlayRandomObjectMissSound();
+        }
+
         if (transform.position.y < -screenHeight / 2f)
         {
             soundManager.PlayRandomDestroySound();
@@ -30,6 +35,7 @@ public class ObstacleDestroyer : MonoBehaviour
             ITriggerHandler handler = other.transform.parent.GetComponent<ITriggerHandler>();
             if (handler != null)
             {
+                soundManager.PlayRandomPlayerHitSound();
                 handler.OnPlayerTrigger();
             }
         }
