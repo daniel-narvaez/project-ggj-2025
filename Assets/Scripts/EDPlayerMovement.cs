@@ -1,12 +1,19 @@
 using UnityEngine;
 
-public class EDPlayerMovement : MonoBehaviour
+
+public interface ITriggerHandler 
+{
+  void OnPlayerTrigger();
+}
+
+public class EDPlayerMovement : MonoBehaviour, ITriggerHandler
 {
     public float maxHorizontalSpeed = 5f; // Speed for horizontal movement
     public float maxVerticalSpeed = 1f; // Speed for vertical movement (up/down)
 
     public float acceleration = 10f;
     private Rigidbody rb; // The Rigidbody component of the 3D model
+    private GameObject bubble, crab;
     private Scale scale;
 
     private void Start()
@@ -69,5 +76,9 @@ public class EDPlayerMovement : MonoBehaviour
         Vector3 clampedVelocity = rb.velocity;
         clampedVelocity.y = Mathf.Clamp(clampedVelocity.y, -maxSpeed, maxSpeed);
         rb.velocity = clampedVelocity;
+    }
+
+    public void OnPlayerTrigger() {
+
     }
 }

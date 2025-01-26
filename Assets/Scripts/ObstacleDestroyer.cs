@@ -34,7 +34,11 @@ public class ObstacleDestroyer : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Player hit");
+            ITriggerHandler handler = GetComponent<ITriggerHandler>();
+            if (handler != null)
+            {
+                handler.OnPlayerTrigger();
+            }
         }
     }
 }
