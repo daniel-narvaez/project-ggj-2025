@@ -97,9 +97,11 @@ public class GameStateManager : Singleton<GameStateManager>
         {
             case GameState.Start:
                 startUI.SetActive(true);
+                SoundManager.Instance.PlayBgMusic(0);
                 break;
             case GameState.Play:
                 playUI.SetActive(true);
+                SoundManager.Instance.PlayBgMusic(0);
                 break;
             case GameState.Pause:
                 pauseUI.SetActive(true);

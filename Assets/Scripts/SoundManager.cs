@@ -1,13 +1,12 @@
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+public class SoundManager : Singleton<SoundManager>
 {
     [Header("Sound Settings")]
     public AudioClip[] destroySounds;
     public AudioClip[] objectMissSounds;
     public AudioClip[] playerHitSounds;
     public AudioClip[] blowSounds;
-
     public AudioClip[] bgSounds;
 
     [Tooltip("AudioSource to play the sounds.")]
@@ -23,6 +22,12 @@ public class SoundManager : MonoBehaviour
         {
             //PlayRandomDestroySound();
         }
+    }
+
+    public void PlayBgMusic(int index) {
+        bgAudioSource.Stop();
+        bgAudioSource.clip = bgSounds[index];
+        bgAudioSource.Play();
     }
 
     public void PlayRandomDestroySound()
