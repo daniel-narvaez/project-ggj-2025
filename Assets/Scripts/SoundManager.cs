@@ -6,9 +6,13 @@ public class SoundManager : MonoBehaviour
     public AudioClip[] destroySounds;
     public AudioClip[] objectMissSounds;
     public AudioClip[] playerHitSounds;
+    public AudioClip[] blowSounds;
 
     [Tooltip("AudioSource to play the sounds.")]
-    public AudioSource audioSource;
+    public AudioSource destroyAudioSource;
+    public AudioSource objectMissAudioSource;
+    public AudioSource playerHitAudioSource;
+    public AudioSource blowAudioSource;
 
     private void Update()
     {
@@ -20,7 +24,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayRandomDestroySound()
     {
-        if (destroySounds.Length == 0 || audioSource == null)
+        if (destroySounds.Length == 0 || destroyAudioSource == null)
         {
             Debug.LogWarning("No sounds or AudioSource assigned!");
             return;
@@ -28,13 +32,13 @@ public class SoundManager : MonoBehaviour
 
         int randomIndex = Random.Range(0, destroySounds.Length);
         AudioClip randomClip = destroySounds[randomIndex];
-        audioSource.clip = randomClip;
-        audioSource.Play();
+        destroyAudioSource.clip = randomClip;
+        destroyAudioSource.Play();
     }
 
     public void PlayRandomObjectMissSound()
     {
-        if (objectMissSounds.Length == 0 || audioSource == null)
+        if (objectMissSounds.Length == 0 || objectMissAudioSource == null)
         {
             Debug.LogWarning("No sounds or AudioSource assigned!");
             return;
@@ -42,13 +46,13 @@ public class SoundManager : MonoBehaviour
 
         int randomIndex = Random.Range(0, objectMissSounds.Length);
         AudioClip randomClip = objectMissSounds[randomIndex];
-        audioSource.clip = randomClip;
-        audioSource.Play();
+        objectMissAudioSource.clip = randomClip;
+        objectMissAudioSource.Play();
     }
 
     public void PlayRandomPlayerHitSound()
     {
-        if (playerHitSounds.Length == 0 || audioSource == null)
+        if (playerHitSounds.Length == 0 || playerHitAudioSource == null)
         {
             Debug.LogWarning("No sounds or AudioSource assigned!");
             return;
@@ -56,7 +60,22 @@ public class SoundManager : MonoBehaviour
 
         int randomIndex = Random.Range(0, playerHitSounds.Length);
         AudioClip randomClip = playerHitSounds[randomIndex];
-        audioSource.clip = randomClip;
-        audioSource.Play();
+        playerHitAudioSource.clip = randomClip;
+        playerHitAudioSource.Play();
+    }
+
+    public void PlayRandomBlowSound()
+    {
+        if (blowSounds.Length == 0 || blowAudioSource == null)
+        {
+            Debug.LogWarning("No sounds or AudioSource assigned!");
+            return;
+        }
+
+        int randomIndex = Random.Range(0, blowSounds.Length);
+        AudioClip randomClip = blowSounds[randomIndex];
+        blowAudioSource.clip = randomClip;
+        blowAudioSource.Play();
+        //audioSource.PlayOneShot(randomClip);
     }
 }

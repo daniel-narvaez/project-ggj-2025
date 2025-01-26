@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class EDPlayerMovement : MonoBehaviour
 {
+    public SoundManager SoundManager;
     public float maxHorizontalSpeed = 5f; // Speed for horizontal movement
     public float maxVerticalSpeed = 1f; // Speed for vertical movement (up/down)
 
@@ -59,9 +60,12 @@ public class EDPlayerMovement : MonoBehaviour
         // kyle speed fix
         Vector3 force = Vector3.up * acceleration;
         
+        if(Input.GetKeyDown(KeyCode.Space))
+            SoundManager.PlayRandomBlowSound();
+
         if (Input.GetKey(KeyCode.Space) && scale.currentScale < scale.maxScale)
         {
-          rb.AddForce(force);
+            rb.AddForce(force);
         }
         
         // Clamp vertical velocity
