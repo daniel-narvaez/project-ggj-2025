@@ -60,7 +60,10 @@ public class GameStateManager : Singleton<GameStateManager>
               holdTime += Time.deltaTime;
 
               if (holdTime >= startTimeThreshold)
+              {
+                holdTime = 0;
                 SetGameState(GameState.Play);
+              }
             } else {
               holdTime = 0;
             }
