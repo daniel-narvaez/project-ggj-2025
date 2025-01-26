@@ -57,7 +57,7 @@ public class EDPlayerMovement : MonoBehaviour
     {
         //Vector3 force = Vector3.up * acceleration / 12;
         // kyle speed fix
-        Vector3 force = Vector3.up * acceleration / 2;
+        Vector3 force = Vector3.up * acceleration;
         
         if (Input.GetKey(KeyCode.Space) && scale.currentScale < scale.maxScale)
         {
