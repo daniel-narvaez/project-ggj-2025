@@ -35,7 +35,7 @@ public class EDPlayerMovement : MonoBehaviour
   private void MoveHorizontally()
   {
       float horizontalInput = Input.GetAxis("Horizontal");
-      Vector3 force = Vector3.right * (acceleration * horizontalInput / 30);
+      Vector3 force = Vector3.right * (acceleration * horizontalInput / 15);
       
       // Speed reduces as scale increases
       float speedMultiplier = 1 - (scale.currentScale / scale.maxScale);
@@ -51,7 +51,7 @@ public class EDPlayerMovement : MonoBehaviour
     // Handle vertical movement (up/down) with Spacebar
     private void MoveVertically()
     {
-        Vector3 force = Vector3.up * acceleration / 12;
+        Vector3 force = Vector3.up * acceleration / 6;
         
         if (Input.GetKey(KeyCode.Space) && scale.currentScale < scale.maxScale)
         {
