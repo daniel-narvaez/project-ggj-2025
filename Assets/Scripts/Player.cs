@@ -6,7 +6,7 @@ public interface ITriggerHandler
   void OnPlayerTrigger();
 }
 
-public class Player : MonoBehaviour, ITriggerHandler
+public class Player : Singleton<Player>, ITriggerHandler
 {
     public SoundManager SoundManager;
     public float maxHorizontalSpeed = 5f; // Speed for horizontal movement
@@ -93,7 +93,7 @@ public class Player : MonoBehaviour, ITriggerHandler
     public void Reset() {
       bubble.SetActive(true);
       scale.currentScale = 0.3f;
-      crabBody.isKinematic = false;
+      crabBody.isKinematic = true;
       crabBody.transform.localPosition = Vector3.zero;
       this.transform.position = Vector3.zero;
     }

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
-    public void RestartGame() => GameStateManager.Instance.SetGameState(GameState.Start);
+    public void RestartGame() => GameStateManager.Instance.RestartGame();
 }

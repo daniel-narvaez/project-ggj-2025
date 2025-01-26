@@ -69,9 +69,8 @@ public class GameStateManager : Singleton<GameStateManager>
 
     public void RestartGame() {
       // Reset background, score, and crab position.
-      // Player.Instance.Reset();
-      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-      //SetGameState(GameState.Start);
+      Player.Instance.Reset();
+      SetGameState(GameState.Start);
     }
 
     // Method to set the current game state and handle state transitions
