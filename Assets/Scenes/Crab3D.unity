@@ -310,6 +310,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 814b9a256cc834805a41a80784903b84, type: 3}
+--- !u!82 &50287965 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5073536201770914454, guid: 814b9a256cc834805a41a80784903b84, type: 3}
+  m_PrefabInstance: {fileID: 50287964}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &50287966 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8824228611928417875, guid: 814b9a256cc834805a41a80784903b84, type: 3}
+  m_PrefabInstance: {fileID: 50287964}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &244985331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1775,7 +1785,7 @@ PrefabInstance:
     - target: {fileID: 4763863241000327764, guid: 96a755936816a654bbcb93b39ee34d42, type: 3}
       propertyPath: blowAudioSource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 50287965}
     - target: {fileID: 4763863241000327764, guid: 96a755936816a654bbcb93b39ee34d42, type: 3}
       propertyPath: destroyAudioSource
       value: 
@@ -1783,7 +1793,7 @@ PrefabInstance:
     - target: {fileID: 4763863241000327764, guid: 96a755936816a654bbcb93b39ee34d42, type: 3}
       propertyPath: playerHitAudioSource
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 50287966}
     - target: {fileID: 4763863241000327764, guid: 96a755936816a654bbcb93b39ee34d42, type: 3}
       propertyPath: objectMissAudioSource
       value: 
