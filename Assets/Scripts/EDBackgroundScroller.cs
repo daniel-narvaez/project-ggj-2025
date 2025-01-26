@@ -13,8 +13,8 @@ public class EDBackgroundScroller : MonoBehaviour
     private void Start()
     {
         // Store the initial position of the background object
-        startPosition = transform.position;
-        transform.position = new Vector3(startPosition.x, startPositionY, startPosition.z);
+        startPosition = transform.localPosition;
+        transform.localPosition = new Vector3(startPosition.x, startPositionY, startPosition.z);
     }
 
     void Update()

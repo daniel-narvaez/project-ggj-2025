@@ -18,7 +18,7 @@ public class EDPlayerMovement : MonoBehaviour
         scale = GetComponentInChildren<Scale>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
       if (GameStateManager.Instance.currentState != GameState.Play)
       {
@@ -35,7 +35,7 @@ public class EDPlayerMovement : MonoBehaviour
   private void MoveHorizontally()
   {
       float horizontalInput = Input.GetAxis("Horizontal");
-      Vector3 force = Vector3.right * (acceleration * horizontalInput / 15);
+      Vector3 force = Vector3.right * (acceleration * horizontalInput / 30);
       
       // Speed reduces as scale increases
       float speedMultiplier = 1 - (scale.currentScale / scale.maxScale);
@@ -51,7 +51,7 @@ public class EDPlayerMovement : MonoBehaviour
     // Handle vertical movement (up/down) with Spacebar
     private void MoveVertically()
     {
-        Vector3 force = Vector3.up * acceleration / 6;
+        Vector3 force = Vector3.up * acceleration / 12;
         
         if (Input.GetKey(KeyCode.Space) && scale.currentScale < scale.maxScale)
         {
