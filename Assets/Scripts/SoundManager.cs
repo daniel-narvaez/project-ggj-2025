@@ -8,11 +8,14 @@ public class SoundManager : MonoBehaviour
     public AudioClip[] playerHitSounds;
     public AudioClip[] blowSounds;
 
+    public AudioClip[] bgSounds;
+
     [Tooltip("AudioSource to play the sounds.")]
     public AudioSource destroyAudioSource;
     public AudioSource objectMissAudioSource;
     public AudioSource playerHitAudioSource;
     public AudioSource blowAudioSource;
+    public AudioSource bgAudioSource;
 
     private void Update()
     {
