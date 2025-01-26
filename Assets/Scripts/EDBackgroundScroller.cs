@@ -8,32 +8,39 @@ public class EDBackgroundScroller : MonoBehaviour
     public float startPositionY; // The initial Y position of the background model
     private Vector3 startPosition; // Starting position of the background
 
+    private Vector3 spawnPosition;
+
     public bool dontReset;
 
     private void Start()
     {
         // Store the initial position of the background object
-        startPosition = transform.localPosition;
-        transform.localPosition = new Vector3(startPosition.x, startPositionY, startPosition.z);
+        spawnPosition = transform.localPosition;
+        transform.localPosition = spawnPosition;
     }
+
+
 
     void Update()
     {
-        if(GameStateManager.Instance.currentState != GameState.Play)
+        if(GameStateManager.Instance.currentState == GameState.Pause)
           return;
+        else if(GameStateManager.Instance.currentState != GameState.Play)
+        {
+          transform.localPosition = spawnPosition;
+        }
         
         // Move the background along the Y-axis (or Z-axis, based on your scene)
         transform.Translate(Vector3.down * scrollSpeed * Time.deltaTime);
 
         if (dontReset) 
-        { // nothing
-        }
+          return;
 
         // If the background has moved past the reset position, reset it to create infinite scrolling
-        else if (transform.position.y <= resetPositionY)
+        if (transform.localPosition.y <= resetPositionY)
         {
             // Reset the background position to the top (or depending on your setup, you can also reset the Z axis)
-            transform.position = new Vector3(startPosition.x, startPositionY, startPosition.z);
+            transform.localPosition = new Vector3(startPosition.x, startPositionY, startPosition.z);
         }
     }
 }
