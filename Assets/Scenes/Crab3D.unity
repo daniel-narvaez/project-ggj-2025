@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: SoundManager
       value: 
       objectReference: {fileID: 1791487853848802256}
+    - target: {fileID: 7386641892224064499, guid: 814b9a256cc834805a41a80784903b84, type: 3}
+      propertyPath: maxVerticalSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8511912370902021857, guid: 814b9a256cc834805a41a80784903b84, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

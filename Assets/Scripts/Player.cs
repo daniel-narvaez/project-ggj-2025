@@ -10,7 +10,7 @@ public class Player : Singleton<Player>, ITriggerHandler
 {
     public SoundManager SoundManager;
     public float maxHorizontalSpeed = 5f; // Speed for horizontal movement
-    public float maxVerticalSpeed = 1f; // Speed for vertical movement (up/down)
+    public float maxVerticalSpeed = 2f; // Speed for vertical movement (up/down)
 
     public float acceleration = 10f;
     private Rigidbody rb; // The Rigidbody component of the 3D model
