@@ -45,7 +45,7 @@ public class EDPlayerMovement : MonoBehaviour
       
       Vector3 clampedVelocity = rb.velocity;
       clampedVelocity.x = Mathf.Clamp(clampedVelocity.x, -adjustedMaxSpeed, adjustedMaxSpeed);
-      rb.velocity = clampedVelocity;
+      rb.velocity = clampedVelocity; 
   }
 
     // Handle vertical movement (up/down) with Spacebar
